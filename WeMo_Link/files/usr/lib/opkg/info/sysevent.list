@@ -1,0 +1,5 @@
+/etc/init.d/syseventd
+/sbin/sysevent
+/sbin/syseventd_fork_helper
+/sbin/syseventd
+/lib/libsysevent.so

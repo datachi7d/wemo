@@ -1,0 +1,3 @@
+/etc/init.d/insightd
+/sbin/insightd
+/lib/libinsight.so

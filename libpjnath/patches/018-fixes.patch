@@ -1,0 +1,37 @@
+Index: pjproject-1.8.10/pjlib/src/pj/os_core_unix.c
+===================================================================
+--- pjproject-1.8.10.orig/pjlib/src/pj/os_core_unix.c	2017-02-08 16:30:58.000000000 +1300
++++ pjproject-1.8.10/pjlib/src/pj/os_core_unix.c	2017-02-08 16:34:23.000000000 +1300
+@@ -1150,19 +1150,11 @@
+ 	return PJ_RETURN_OS_ERROR(rc);
+ 
+     if (type == PJ_MUTEX_SIMPLE) {
+-#if (defined(PJ_LINUX) && PJ_LINUX!=0) || \
+-    defined(PJ_HAS_PTHREAD_MUTEXATTR_SETTYPE)
+-	rc = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_FAST_NP);
+-#elif (defined(PJ_RTEMS) && PJ_RTEMS!=0) || \
+-       defined(PJ_PTHREAD_MUTEXATTR_T_HAS_RECURSIVE)
+-	/* Nothing to do, default is simple */
+-#else
+ 	rc = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_NORMAL);
+-#endif
+     } else {
+ #if (defined(PJ_LINUX) && PJ_LINUX!=0) || \
+      defined(PJ_HAS_PTHREAD_MUTEXATTR_SETTYPE)
+-	rc = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE_NP);
++	rc = pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+ #elif (defined(PJ_RTEMS) && PJ_RTEMS!=0) || \
+        defined(PJ_PTHREAD_MUTEXATTR_T_HAS_RECURSIVE)
+ 	// Phil Torre <ptorre@zetron.com>:
+Index: pjproject-1.8.10/pjnath/src/pjnath/turn_session.c
+===================================================================
+--- pjproject-1.8.10.orig/pjnath/src/pjnath/turn_session.c	2017-02-08 16:30:58.000000000 +1300
++++ pjproject-1.8.10/pjnath/src/pjnath/turn_session.c	2017-02-08 16:36:42.000000000 +1300
+@@ -34,6 +34,7 @@
+ #include <pthread.h>
+ 
+ #include <sys/socket.h>
++#include <sys/time.h>
+ #include <netinet/in.h>
+ 
+ #define PJ_TURN_CHANNEL_MIN	    0x4000

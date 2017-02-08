@@ -1,0 +1,9 @@
+/etc/init.d/wemo
+/etc/icon.jpg
+/etc/ver.txt
+/sbin/startWemo.sh
+/sbin/zbdmonitor.sh
+/sbin/web/bridgerules.xml
+/sbin/web/setup.xml
+/sbin/web/bridgeservice.xml
+/sbin/wemoApp
