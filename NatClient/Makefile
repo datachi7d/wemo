@@ -44,17 +44,17 @@ define Package/NatClient/description
 endef
 
 define Build/Prepare
-	$(INSTALL_DIR) $(PKG_BUILD_DIR)
-	echo "$$$$NATCLIENT" > $(PKG_BUILD_DIR)/Makefile
+	#$(INSTALL_DIR) $(PKG_BUILD_DIR)
+	#echo "$$$$NATCLIENT" > $(PKG_BUILD_DIR)/Makefile
 endef
 
 define Build/Compile
-	$(MAKE_VARS) $(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) $(MAKE_FLAGS)
+	#$(MAKE_VARS) $(MAKE) -C $(PKG_BUILD_DIR)/$(MAKE_PATH) $(MAKE_FLAGS)
 endef
 
 define Package/NatClient/install
-	$(INSTALL_DIR) $(1)/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(OUTPUT) $(1)/sbin/
+	#$(INSTALL_DIR) $(1)/sbin
+	#$(INSTALL_BIN) $(PKG_BUILD_DIR)/$(OUTPUT) $(1)/sbin/
 endef
 
 $(eval $(call BuildPackage,NatClient))
